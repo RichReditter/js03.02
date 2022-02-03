@@ -157,7 +157,7 @@
 
 const request = new XMLHttpRequest();
  
-request.open('GET', 'https://jsonplaceholder.typicode.com/users');
+request.open('GET', 'https://jsonplaceholder.typicode.com/photos');
  
 request.onload = function() {
     console.log('Onload');
@@ -181,14 +181,21 @@ request.onload = function() {
     //     return element;
     // })
 
-    const f = object.map( element => {
-        return +element.address.geo.lat + +element.address.geo.lng
-    })
+    // const f = object.map( element => {
+    //     return +element.address.geo.lat + +element.address.geo.lng
+    // })
 
-    // console.log(b)
+    // // console.log(b)
+    // console.log(f)
+    // const reducer = f.reduce( (a,b) => a + b )
+    // console.log(reducer)
+
+    const f = object.map( element => element.thumbnailUrl)
+    f.filter( element => {
+        const lastNumber = +element.slice(-1)
+        return lastNumber % 2 === 0
+    })
     console.log(f)
-    const reducer = f.reduce( (a,b) => a + b )
-    console.log(reducer)
 }
  
 request.send();
